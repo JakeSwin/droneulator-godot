@@ -2,4 +2,4 @@
 .godot/
 /android/
 assets/
-dist/
+dist/main/

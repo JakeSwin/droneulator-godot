@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dsyfq7gu8ql1a"]
+
+[ext_resource type="Script" uid="uid://ec40dpjrs1r2" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt7q6"]
+
+[node name="Ui" type="Control" unique_id=1112839635]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nt7q6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=814629646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="HBoxContainer" unique_id=318094104]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+alignment = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer1" unique_id=677923120]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer1/Panel" unique_id=244360482]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 97.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "Restart Sim"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=104831655]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer2" unique_id=2137724405]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nt7q6")
+
+[node name="ConnectionStatus" type="ColorRect" parent="HBoxContainer/VBoxContainer2/Panel" unique_id=1240097703]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/VBoxContainer2/Panel" unique_id=1910320837]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+stretch_mode = 0
+alignment_vertical = 0
+
+[node name="CameraView" type="TextureRect" parent="HBoxContainer/VBoxContainer2/Panel/AspectRatioContainer" unique_id=1576250660]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer1/Panel/Button" to="." method="_on_restart_button_pressed"]

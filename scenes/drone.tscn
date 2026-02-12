@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://chcc2g3w3qavu"]
+
+[ext_resource type="PackedScene" uid="uid://dqrsw1k4g5kt2" path="res://assets/drone.glb" id="1_dil0n"]
+[ext_resource type="Script" uid="uid://dm2fn4egk3ns4" path="res://scripts/drone.gd" id="2_knnud"]
+[ext_resource type="Texture2D" uid="uid://ew7471qdi7vx" path="res://assets/sprites/uav-icon.png" id="3_1r4ts"]
+
+[sub_resource type="Environment" id="Environment_knnud"]
+background_mode = 1
+ambient_light_source = 1
+ambient_light_energy = 0.0
+reflected_light_source = 1
+
+[node name="drone" unique_id=1049687756 instance=ExtResource("1_dil0n")]
+script = ExtResource("2_knnud")
+
+[node name="DJI Mavic Mini 2" parent="." index="0" unique_id=1805874254]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Drone Camera Root" type="Node3D" parent="DJI Mavic Mini 2/Canera Lerns" parent_id_path=PackedInt32Array(745818532) index="0" unique_id=1899489915]
+
+[node name="Camera3D" type="Camera3D" parent="DJI Mavic Mini 2/Canera Lerns/Drone Camera Root" index="0" unique_id=1656011828]
+transform = Transform3D(-0.99999994, 8.742278e-08, -3.8213705e-15, 0, -4.371139e-08, -0.99999994, -8.742277e-08, -1, 4.3711385e-08, 0, 0, 0)
+
+[node name="Front Left Rotation parent" parent="DJI Mavic Mini 2" index="9" unique_id=2031831281]
+unique_name_in_owner = true
+
+[node name="Front Right rotation parent" parent="DJI Mavic Mini 2" index="12" unique_id=593208415]
+unique_name_in_owner = true
+
+[node name="Rear Left rotation parent" parent="DJI Mavic Mini 2" index="15" unique_id=447522759]
+unique_name_in_owner = true
+
+[node name="Rear Right rotation parent" parent="DJI Mavic Mini 2" index="17" unique_id=1445245744]
+unique_name_in_owner = true
+
+[node name="SegViewport" type="SubViewport" parent="." index="1" unique_id=99622131]
+render_target_update_mode = 4
+
+[node name="SegCamera" type="Camera3D" parent="SegViewport" index="0" unique_id=1626203391]
+cull_mask = 1048574
+environment = SubResource("Environment_knnud")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="2" unique_id=560886300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.027019665, 0)
+visibility_range_begin = 4.0
+pixel_size = 0.0001
+billboard = 1
+no_depth_test = true
+fixed_size = true
+alpha_cut = 1
+texture = ExtResource("3_1r4ts")

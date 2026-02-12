@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://b1qnhnal6pieh"]
+
+[ext_resource type="PackedScene" uid="uid://chcc2g3w3qavu" path="res://scenes/drone.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://04v87vbh3wit" path="res://scripts/main.gd" id="1_o6xl0"]
+[ext_resource type="Script" uid="uid://b0trf7fbjxbrq" path="res://scripts/web_socket_client.gd" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://b1xtxwhc7e4ti" path="res://assets/hdr/noon_grass_4k.hdr" id="3_85g3d"]
+[ext_resource type="Script" uid="uid://b5on5j0h7je0d" path="res://scripts/fly_camera_rig.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cmktddy6xbmir" path="res://scenes/Tree_LOD0.tscn" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://cw0tgs2k1jbxp" path="res://scripts/segment.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dsyfq7gu8ql1a" path="res://scenes/ui.tscn" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://cml61bw51i3b" path="res://assets/textures/forrest_ground_01_diff_2k.jpg" id="7_eb6dy"]
+[ext_resource type="Script" uid="uid://2lo8e3ukbka" path="res://scripts/sidecar_manager.gd" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://d0llxhxhlaltd" path="res://assets/textures/forrest_ground_01_nor_gl_2k.jpg" id="8_trceg"]
+[ext_resource type="Texture2D" uid="uid://k7nwg1bc4e06" path="res://assets/textures/forrest_ground_01_rough_2k.jpg" id="9_a8y0u"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_choun"]
+panorama = ExtResource("3_85g3d")
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_ya4ey"]
+sky_material = SubResource("PanoramaSkyMaterial_choun")
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 2
+sky = SubResource("Sky_ya4ey")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.4
+tonemap_mode = 2
+tonemap_exposure = 0.9
+ssao_enabled = true
+ssao_radius = 1.5
+sdfgi_use_occlusion = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tefeu"]
+albedo_texture = ExtResource("7_eb6dy")
+metallic_specular = 0.0
+roughness_texture = ExtResource("9_a8y0u")
+normal_enabled = true
+normal_texture = ExtResource("8_trceg")
+uv1_scale = Vector3(15, 15, 15)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o6xl0"]
+material = SubResource("StandardMaterial3D_tefeu")
+size = Vector2(50, 50)
+
+[node name="root" type="Node3D" unique_id=20299834]
+script = ExtResource("1_o6xl0")
+
+[node name="drone" parent="." unique_id=1049687756 instance=ExtResource("1_o5qli")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=446522064]
+transform = Transform3D(0.6276341, 0.7678481, 0.12839313, -0.19854844, -0.0015902445, 0.9800897, 0.7527642, -0.64063, 0.15145694, 0, 12.157456, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=318417294]
+environment = SubResource("Environment_o5qli")
+
+[node name="WebSocketClient" type="Node" parent="." unique_id=1775493790]
+script = ExtResource("2_0wfyh")
+
+[node name="FlyCameraRig" type="Node3D" parent="." unique_id=1670843515]
+script = ExtResource("3_sugp2")
+
+[node name="Camera3D" type="Camera3D" parent="FlyCameraRig" unique_id=968312580]
+cull_mask = 1048573
+current = true
+
+[node name="Trees" type="Node3D" parent="." unique_id=808973549]
+
+[node name="ct_lod0" parent="Trees" unique_id=1010663604 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9048843, 0, 5.404347)
+
+[node name="ct_lod1" parent="Trees" unique_id=2039178181 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.086368, 0, -8.927383)
+
+[node name="ct_lod2" parent="Trees" unique_id=1257284504 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.864299, 1.9073486e-06, 15.267128)
+
+[node name="ct_lod3" parent="Trees" unique_id=1745275578 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4249954, 0, 18.63567)
+
+[node name="ct_lod4" parent="Trees" unique_id=2086497802 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.829023, 0, -13.950808)
+
+[node name="ct_lod5" parent="Trees" unique_id=329954880 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.203255, 0, 8.129356)
+
+[node name="ct_lod6" parent="Trees" unique_id=577421811 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 8.88916, 0, -2.6858616)
+
+[node name="ct_lod7" parent="Trees" unique_id=2105036936 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.6501331, 0, -16.763947)
+
+[node name="ct_lod8" parent="Trees" unique_id=644679478 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -16.984604, 0, -16.763947)
+
+[node name="ct_lod9" parent="Trees" unique_id=1520849904 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -16.984604, 0, -1.7924709)
+
+[node name="ct_lod10" parent="Trees" unique_id=235230572 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -4.850582, 0, 15.526289)
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=66963195]
+mesh = SubResource("PlaneMesh_o6xl0")
+script = ExtResource("5_tbgi4")
+segmentation_color = Color(0.13725491, 0.8509804, 0.1254902, 1)
+
+[node name="Ui" parent="." unique_id=1112839635 node_paths=PackedStringArray("network") instance=ExtResource("6_tefeu")]
+network = NodePath("../WebSocketClient")
+
+[node name="SidecarManager" type="Node" parent="." unique_id=1996929691]
+script = ExtResource("8_tipki")

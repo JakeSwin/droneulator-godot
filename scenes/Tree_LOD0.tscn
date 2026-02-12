@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cmktddy6xbmir"]
+
+[ext_resource type="PackedScene" uid="uid://bpo81woighn35" path="res://assets/ct_lod0.glb" id="1_w5v3w"]
+[ext_resource type="Script" uid="uid://cw0tgs2k1jbxp" path="res://scripts/segment.gd" id="2_eif86"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5v3w"]
+albedo_color = Color(1, 0.17254902, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eif86"]
+material = SubResource("StandardMaterial3D_w5v3w")
+radius = 0.2
+height = 0.4
+
+[node name="ct_lod0" unique_id=1010663604 instance=ExtResource("1_w5v3w")]
+
+[node name="Christmas tree_LOD0_Bark_Mat_0" parent="Sketchfab_model/22a2cfc5a64543b4a40aec453ee25350_fbx/RootNode/Christmas tree_LOD0" parent_id_path=PackedInt32Array(1328331934) index="0" unique_id=1251115280]
+script = ExtResource("2_eif86")
+segmentation_color = Color(0.275509, 0.17379609, 0.12444734, 1)
+
+[node name="Christmas tree_LOD0_Brunches_Mat_0" parent="Sketchfab_model/22a2cfc5a64543b4a40aec453ee25350_fbx/RootNode/Christmas tree_LOD0" parent_id_path=PackedInt32Array(1328331934) index="1" unique_id=893193256]
+script = ExtResource("2_eif86")
+segmentation_color = Color(0.34117648, 0.40392157, 0.23137255, 1)
+
+[node name="Node3D" type="Node3D" parent="." index="1" unique_id=313152814]
+
+[node name="Apple" type="MeshInstance3D" parent="Node3D" index="0" unique_id=411949613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9808755, 3.5806262, 0.4688666)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple2" type="MeshInstance3D" parent="Node3D" index="1" unique_id=892295805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8360169, 2.9344738, 0.4688666)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple3" type="MeshInstance3D" parent="Node3D" index="2" unique_id=2038508864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2272489, 5.2983418, 0.4688666)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple4" type="MeshInstance3D" parent="Node3D" index="3" unique_id=1420009539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36157632, 6.5426517, 0.4688666)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple5" type="MeshInstance3D" parent="Node3D" index="4" unique_id=24653503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89174366, 6.5426517, -0.39935005)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple6" type="MeshInstance3D" parent="Node3D" index="5" unique_id=387788101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89174366, 1.6087654, -0.39935005)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple7" type="MeshInstance3D" parent="Node3D" index="6" unique_id=300874192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013494968, 2.0239186, 1.105846)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")
+
+[node name="Apple8" type="MeshInstance3D" parent="Node3D" index="7" unique_id=1910932533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5480424, 3.9449592, -0.8478402)
+mesh = SubResource("SphereMesh_eif86")
+script = ExtResource("2_eif86")

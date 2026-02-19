@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cw0tgs2k1jbxp" path="res://scripts/segment.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dsyfq7gu8ql1a" path="res://scenes/ui.tscn" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cml61bw51i3b" path="res://assets/textures/forrest_ground_01_diff_2k.jpg" id="7_eb6dy"]
-[ext_resource type="Script" uid="uid://2lo8e3ukbka" path="res://scripts/sidecar_manager.gd" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://d0llxhxhlaltd" path="res://assets/textures/forrest_ground_01_nor_gl_2k.jpg" id="8_trceg"]
 [ext_resource type="Texture2D" uid="uid://k7nwg1bc4e06" path="res://assets/textures/forrest_ground_01_rough_2k.jpg" id="9_a8y0u"]
 
@@ -62,10 +61,11 @@ environment = SubResource("Environment_o5qli")
 script = ExtResource("2_0wfyh")
 
 [node name="FlyCameraRig" type="Node3D" parent="." unique_id=1670843515]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 1.5, 0)
 script = ExtResource("3_sugp2")
 
 [node name="Camera3D" type="Camera3D" parent="FlyCameraRig" unique_id=968312580]
-cull_mask = 1048573
+cull_mask = 1048569
 current = true
 
 [node name="Trees" type="Node3D" parent="." unique_id=808973549]
@@ -110,6 +110,3 @@ segmentation_color = Color(0.13725491, 0.8509804, 0.1254902, 1)
 
 [node name="Ui" parent="." unique_id=1112839635 node_paths=PackedStringArray("network") instance=ExtResource("6_tefeu")]
 network = NodePath("../WebSocketClient")
-
-[node name="SidecarManager" type="Node" parent="." unique_id=1996929691]
-script = ExtResource("8_tipki")

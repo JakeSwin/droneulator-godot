@@ -3,12 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://dqrsw1k4g5kt2" path="res://assets/drone.glb" id="1_dil0n"]
 [ext_resource type="Script" uid="uid://dm2fn4egk3ns4" path="res://scripts/drone.gd" id="2_knnud"]
 [ext_resource type="Texture2D" uid="uid://ew7471qdi7vx" path="res://assets/sprites/uav-icon.png" id="3_1r4ts"]
+[ext_resource type="Shader" uid="uid://dteloaau48qs5" path="res://shaders/depthquad.gdshader" id="4_umx5g"]
+[ext_resource type="Script" uid="uid://b510ci5gjoos6" path="res://scripts/show_depth_quad.gd" id="5_k1p8w"]
 
 [sub_resource type="Environment" id="Environment_knnud"]
 background_mode = 1
 ambient_light_source = 1
 ambient_light_energy = 0.0
 reflected_light_source = 1
+
+[sub_resource type="Environment" id="Environment_k1p8w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1p8w"]
+render_priority = 0
+shader = ExtResource("4_umx5g")
+shader_parameter/max_range = 50.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_f6asb"]
+material = SubResource("ShaderMaterial_k1p8w")
+size = Vector2(2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1p8w"]
+size = Vector3(0.22236633, 0.06869507, 0.2707138)
 
 [node name="drone" unique_id=1049687756 instance=ExtResource("1_dil0n")]
 script = ExtResource("2_knnud")
@@ -37,7 +53,7 @@ unique_name_in_owner = true
 render_target_update_mode = 4
 
 [node name="SegCamera" type="Camera3D" parent="SegViewport" index="0" unique_id=1626203391]
-cull_mask = 1048574
+cull_mask = 1048570
 environment = SubResource("Environment_knnud")
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="2" unique_id=560886300]
@@ -49,3 +65,34 @@ no_depth_test = true
 fixed_size = true
 alpha_cut = 1
 texture = ExtResource("3_1r4ts")
+
+[node name="DepthSensorViewport" type="SubViewport" parent="." index="3" unique_id=1717564150]
+transparent_bg = true
+use_hdr_2d = true
+gui_disable_input = true
+render_target_update_mode = 4
+
+[node name="DepthCamera" type="Camera3D" parent="DepthSensorViewport" index="0" unique_id=311690731]
+cull_mask = 1048573
+environment = SubResource("Environment_k1p8w")
+
+[node name="DepthQuad" type="MeshInstance3D" parent="DepthSensorViewport/DepthCamera" index="0" unique_id=509669911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+visible = false
+layers = 4
+extra_cull_margin = 10000.0
+mesh = SubResource("QuadMesh_f6asb")
+script = ExtResource("5_k1p8w")
+
+[node name="RGBViewport" type="SubViewport" parent="." index="4" unique_id=334289070]
+
+[node name="RBGCamera" type="Camera3D" parent="RGBViewport" index="0" unique_id=698235089]
+cull_mask = 1048569
+
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=1141380464]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=2082118103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021736145, 0.028579712, 0.0034751892)
+shape = SubResource("BoxShape3D_k1p8w")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

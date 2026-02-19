@@ -11,6 +11,10 @@ material = SubResource("StandardMaterial3D_w5v3w")
 radius = 0.2
 height = 0.4
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eif86"]
+radius = 2.1899414
+height = 8.820129
+
 [node name="ct_lod0" unique_id=1010663604 instance=ExtResource("1_w5v3w")]
 
 [node name="Christmas tree_LOD0_Bark_Mat_0" parent="Sketchfab_model/22a2cfc5a64543b4a40aec453ee25350_fbx/RootNode/Christmas tree_LOD0" parent_id_path=PackedInt32Array(1328331934) index="0" unique_id=1251115280]
@@ -62,3 +66,9 @@ script = ExtResource("2_eif86")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5480424, 3.9449592, -0.8478402)
 mesh = SubResource("SphereMesh_eif86")
 script = ExtResource("2_eif86")
+
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=794513629]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=122672252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4651794, 0)
+shape = SubResource("CapsuleShape3D_eif86")

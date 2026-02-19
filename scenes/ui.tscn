@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://dsyfq7gu8ql1a"]
 
 [ext_resource type="Script" uid="uid://ec40dpjrs1r2" path="res://scripts/ui.gd" id="1_nt7q6"]
+[ext_resource type="Shader" uid="uid://6n2q3kmywlxk" path="res://shaders/depth_view.gdshader" id="2_x4jx1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt7q6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
+shader = ExtResource("2_x4jx1")
+shader_parameter/is_depth_mode = false
+shader_parameter/debug_max_range = 8.0
 
 [node name="Ui" type="Control" unique_id=1112839635]
 layout_mode = 3
@@ -66,19 +72,37 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/VBoxContainer2/Panel" unique_id=1910320837]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2/Panel" unique_id=111698801]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-stretch_mode = 0
-alignment_vertical = 0
 
-[node name="CameraView" type="TextureRect" parent="HBoxContainer/VBoxContainer2/Panel/AspectRatioContainer" unique_id=1576250660]
+[node name="CameraView" type="TextureRect" parent="HBoxContainer/VBoxContainer2/Panel/VBoxContainer" unique_id=1576250660]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yev5y")
 layout_mode = 2
 mouse_filter = 2
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 5
 
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/Panel/VBoxContainer" unique_id=863246722]
+layout_mode = 2
+alignment = 2
+
+[node name="SwitchViewDepth" type="Button" parent="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer" unique_id=669624299]
+layout_mode = 2
+text = "Depth"
+
+[node name="SwitchViewSeg" type="Button" parent="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer" unique_id=1626590307]
+layout_mode = 2
+text = "Segmentation"
+
+[node name="SwitchViewRGB" type="Button" parent="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer" unique_id=274216867]
+layout_mode = 2
+text = "RGB"
+
 [connection signal="pressed" from="HBoxContainer/VBoxContainer1/Panel/Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/SwitchViewDepth" to="." method="_on_switch_view_depth_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/SwitchViewSeg" to="." method="_on_switch_view_seg_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/SwitchViewRGB" to="." method="_on_switch_view_rgb_pressed"]

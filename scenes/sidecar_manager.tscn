@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dbhaslqqeowso"]
+
+[ext_resource type="Script" uid="uid://2lo8e3ukbka" path="res://scripts/sidecar_manager.gd" id="1_p2hae"]
+
+[node name="SidecarManager" type="Node" unique_id=461598935]
+script = ExtResource("1_p2hae")
